@@ -19,7 +19,7 @@ public:
     }
 };
 
-void register_user(int &user_id)
+user register_user(int &user_id)
 {
     string username, password;
     int account_id;
@@ -32,6 +32,8 @@ void register_user(int &user_id)
 
     account_id = user_id;
     user_id += 1;
+
+    return user(username,password,account_id);
 }
 
 void menu()
@@ -51,13 +53,19 @@ int main()
     switch(user_choice)
     {
         case REGISTER:
-            register_user(user_id);
+        {
+            user new_user = register_user(user_id);
             break;
+        }
         case LOGIN:
+        {
             cout<<"Login"<<endl;
             break;
+        }
         case EXIT:
+        {
             cout<<"Exit"<<endl;
             break;
+        }
     }
 }
