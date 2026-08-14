@@ -28,6 +28,5 @@ int main()
             break;
         case EXIT:
             cout<<"Exit"<<endl;
-            break;
     }
 }
