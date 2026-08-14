@@ -11,3 +11,4 @@ int receive_input()
 
     return input - 1;
 }
+
