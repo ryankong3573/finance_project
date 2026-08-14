@@ -18,4 +18,16 @@ int main()
 {
     menu();
     int user_choice = receive_input();
+    switch(user_choice)
+    {
+        case REGISTER:
+            cout<<"Register"<<endl;
+            break;
+        case LOGIN:
+            cout<<"Login"<<endl;
+            break;
+        case EXIT:
+            cout<<"Exit"<<endl;
+            break;
+    }
 }
