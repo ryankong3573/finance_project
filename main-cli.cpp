@@ -26,6 +26,7 @@ public:
         account_id = id;
         ++id;
 
+        cout<<"Your user id is: "<<this->account_id;
         users_data.push_back(*this);
     }
 };
