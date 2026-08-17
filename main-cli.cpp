@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "headers.h"
 using namespace std;
 
@@ -7,34 +8,28 @@ enum{
 };
 
 class user{
+
     string username;
     string password;
     int account_id;
+    inline static int id = 0;
+    inline static vector<user> users_data;
+
 public:
-    user(string username, string password, int account_id)
+    void register_user()
     {
-        this->username = username;
-        this->password = password;
-        this->account_id = account_id;
+        cout<<"Username: ";
+        cin>>username;
+
+        password = create_password();
+
+        account_id = id;
+        ++id;
+
+        users_data.push_back(*this);
     }
 };
 
-user register_user(int &user_id)
-{
-    string username, password;
-    int account_id;
-
-    cout<<"Enter your username:";
-    cin>>username;
-
-    cout<<"Enter your password:";
-    cin>>password;
-
-    account_id = user_id;
-    user_id += 1;
-
-    return user(username,password,account_id);
-}
 
 void menu()
 {
@@ -54,7 +49,8 @@ int main()
     {
         case REGISTER:
         {
-            user new_user = register_user(user_id);
+            user new_user;
+            new_user.register_user();
             break;
         }
         case LOGIN:
