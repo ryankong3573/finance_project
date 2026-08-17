@@ -5,6 +5,6 @@ using namespace std;
 
 int receive_input();
 
-
+string create_password();
 
 #endif
