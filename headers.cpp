@@ -11,6 +11,7 @@ int receive_input()
 
     return input - 1;
 }
+
 string create_password()
 {
     bool password_confirmed = false;
@@ -33,3 +34,4 @@ string create_password()
         }
     return password1;
 }
+
