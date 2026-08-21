@@ -7,4 +7,5 @@ int receive_input();
 
 string create_password();
 
+void print_space();
 #endif
