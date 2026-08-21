@@ -12,6 +12,7 @@ class user{
     string username;
     string password;
     double account_balance;
+    double asset_worth;
     int account_id;
     inline static int id = 0;
     inline static vector<user> users_data;
@@ -20,10 +21,10 @@ public:
 
     void print_user_details()
     {
-        cout<<username;
-        cout<<account_balance;
+        cout<<username<<"'s account"<<endl;
+        cout<<"Account Balance:"<<account_balance<<endl;
+        cout<<"Asset Worth:"<<asset_worth<<endl;
     }
-
 
     void register_user()
     {
@@ -36,6 +37,7 @@ public:
         ++id;
 
         account_balance = 0;
+        asset_worth = 0;
 
         cout<<"Your user id is: "<<this->account_id<<endl;
         users_data.push_back(*this);
@@ -47,7 +49,7 @@ public:
 
         user* found_user = search_user();
         if(found_user == nullptr){
-            return;
+            return nullptr;
         }
 
         cout<<"Enter Password:";
@@ -61,7 +63,7 @@ public:
         else{
             cout<<"Incorrect Password"<<endl;
         }
-
+        return nullptr;
     }
 
     user* search_user()
@@ -118,12 +120,19 @@ int main()
             case LOGIN:
             {
                 user existing_user;
-                user logged_user = *existing_user.login_user();
+                user* logged_user = existing_user.login_user();
                 
-                //Home page
-                logged_user.print_user_details();
-
-                break;
+                if(logged_user != nullptr)
+                {
+                    print_space();
+                    user user_info = *logged_user;
+                    user_info.print_user_details();
+                    print_space();
+                    user_menu();
+                    int option = receive_input();
+                    break;
+                }
+                
             }
             case EXIT:
             {
