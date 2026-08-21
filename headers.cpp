@@ -35,3 +35,7 @@ string create_password()
     return password1;
 }
 
+void print_space()
+{
+    cout<<string(15,'-')<<endl;
+}
