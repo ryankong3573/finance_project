@@ -11,11 +11,20 @@ class user{
 
     string username;
     string password;
+    double account_balance;
     int account_id;
     inline static int id = 0;
     inline static vector<user> users_data;
 
 public:
+
+    void print_user_details()
+    {
+        cout<<username;
+        cout<<account_balance;
+    }
+
+
     void register_user()
     {
         cout<<"Username: ";
@@ -26,26 +35,28 @@ public:
         account_id = id;
         ++id;
 
+        account_balance = 0;
+
         cout<<"Your user id is: "<<this->account_id<<endl;
         users_data.push_back(*this);
     }
 
-    void login_user()
+    user* login_user()
     {
         string password;
 
-        user* user = search_user();
-        if(user == nullptr){
-            cout<<"Enter username again."<<endl;
+        user* found_user = search_user();
+        if(found_user == nullptr){
             return;
         }
 
         cout<<"Enter Password:";
         cin>>password;
 
-        if(user->password == password)
+        if(found_user->password == password)
         {
             cout<<"Login successful"<<endl;
+            return found_user;
         }
         else{
             cout<<"Incorrect Password"<<endl;
@@ -80,6 +91,13 @@ void menu()
     cout<<"3.Exit"<<endl;
 }
 
+void user_menu()
+{
+    cout<<"1.Deposit Money"<<endl;
+    cout<<"2.Withdraw Money"<<endl;
+    cout<<"3.View current investment Plan"<<endl;
+}
+
 int main()
 {
     int user_id = 0;
@@ -100,7 +118,11 @@ int main()
             case LOGIN:
             {
                 user existing_user;
-                existing_user.login_user();
+                user logged_user = *existing_user.login_user();
+                
+                //Home page
+                logged_user.print_user_details();
+
                 break;
             }
             case EXIT:
